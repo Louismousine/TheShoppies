@@ -33,7 +33,7 @@ class Dashboard extends Component<IProps, IState> {
   render() {
     console.log(this.state.nomineesPosters)
     return (
-      <div style={{ width: "50%", alignContent: "center",fontSize:"0.95em" }}>
+      <div style={{ width: "50%", alignContent: "center",fontSize:"0.85em" }}>
             Search for movies to nominate for a Shoppie! You may nominate up to
             5 movies.
             <SearchBar
@@ -70,7 +70,7 @@ class Dashboard extends Component<IProps, IState> {
   async onSubmitSearch() {
       this.setState({movies:[]})
     await fetch(
-      `http://www.omdbapi.com/?s=${this.state.search}&page=1&type=movie&apikey=961eddf`,
+      `https://www.omdbapi.com/?s=${this.state.search}&page=1&type=movie&apikey=961eddf`,
       {
         method: "get",
       }

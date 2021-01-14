@@ -93,7 +93,7 @@ class App extends Component<IProps, IState>{
             )}
             </div>
           </Menu>
-          <Navbar bg="dark" expand={true} collapseOnSelect={false} style={{ maxHeight: "15vh", marginBottom: "5vh" }}>
+          <Navbar bg="dark" expand={true} collapseOnSelect={false} style={{ maxHeight: "12vh", marginBottom: "5vh" }}>
             <Navbar.Brand>
               <span style={{ fontSize: "2em", paddingLeft: "2vw" }}>
                 <img
