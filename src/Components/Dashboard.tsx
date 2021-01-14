@@ -58,7 +58,7 @@ class Dashboard extends Component<IProps, IState> {
               {this.state.movies.length>0 ? (this.state.movies.map((movie) => (
                 <MovieCard
                   movieID={movie}
-                  added={this.state.nominees.includes(movie)}
+                  added={this.state.nominees}
                   handler={this.handler}
                   parent={this}
                 />
@@ -116,7 +116,7 @@ class Dashboard extends Component<IProps, IState> {
 
 interface Props {
   movieID: any;
-  added: boolean;
+  added: any;
   handler: any;
   parent:any;
 }
@@ -130,8 +130,12 @@ class MovieCard extends React.Component<Props> {
       Poster: "",
       imdbRating: "",
     },
-    added: false,
+    isadded: this.props.added.includes(this.props.movieID),
   };
+
+  componentWillReceiveProps(newProps) {
+    this.setState({isadded: newProps.added.includes(this.props.movieID)});
+}
 
   componentDidMount() {
     axios
@@ -147,13 +151,13 @@ class MovieCard extends React.Component<Props> {
   handlerClick() {
     let boo = this.props.handler(
       this.props.movieID,
-      !this.state.added,
+      !this.state.isadded,
       this.state.movieData.Poster,
       this.state.movieData.Title,
       this.props.parent
     );
     if(boo)
-    this.setState({ added: !this.state.added });
+    this.setState({ isadded: !this.state.isadded });
   }
 
   render() {
@@ -181,7 +185,7 @@ class MovieCard extends React.Component<Props> {
           <p>{Plot && Plot.substr(0, 350)}</p>
           <div className="tags-container">
             <button onClick={()=>this.handlerClick()}>
-              {!this.state.added ? <MdAdd /> : <MdRemove />}
+              {!this.state.isadded ? <MdAdd /> : <MdRemove />}
             </button>
           </div>
         </div>
